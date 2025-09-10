@@ -1,0 +1,746 @@
+/* Global Box-Sizing Reset */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Custom Font Declarations */
+@font-face {
+    font-family: 'Colmeak';
+    src: url("/static/fonts/Colmeak.otf") format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bestie Seventy';
+    src: url("/static/fonts/Bestie%20Seventy.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* CSS Variables for Easy Theming (True Black and Vibrant Purple, Minimalist) */
+:root {
+    --primary-color: #A020F0; /* Brighter Purple for primary actions/highlights */
+    --primary-dark: #8A2BE2; /* Slightly darker purple for hover */
+    --secondary-color: #DDA0DD; /* Lighter purple/plum for secondary text */
+    --accent-color: #6A0DAD; /* Deep purple for strong contrasts/icons */
+    --background-color: #000000; /* Absolute Black */
+    --text-color: #E0E0E0; /* Off-white for general text */
+    --light-text-color: #F0F0F0; /* Even lighter for some text */
+    --border-color: #33004D; /* Dark purple for subtle borders (if any remain) */
+
+    /* Success/Green color for loading bar/button progress */
+    --success-color: #28a745; /* A standard green */
+    --success-glow: 0 0 25px rgba(40, 167, 69, 0.8); /* Green glow */
+
+    /* Glows for text and icons, NO BOX SHADOWS */
+    --glow-effect: 0 0 25px rgba(160, 32, 240, 0.8); /* Strong purple glow for text/buttons */
+    --subtle-glow: 0 0 10px rgba(160, 32, 240, 0.4); /* Softer glow for subtle elements */
+    --accent-glow: 0 0 15px rgba(106, 13, 173, 0.8); /* Deeper purple glow for accents */
+
+    --border-radius: 10px; /* Slight rounding for input fields and buttons */
+
+    /* Applied Custom Fonts */
+    --font-main: 'Poppins', sans-serif; /* Changed to Poppins for general text for better readability */
+    --font-heading: 'Bestie Seventy', cursive;
+    --font-secondary-heading: 'Colmeak', sans-serif;
+    --font-special-text: 'Colmeak', sans-serif;
+    --font-button: 'Colmeak', sans-serif;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(145deg, var(--background-color) 0%, #08000F 100%);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    perspective: 1000px;
+    padding: 20px;
+}
+
+.main-content {
+    position: relative; /* Ensure this is here */
+    width: 95%;
+    max-width: 850px;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: center;
+    animation: fadeInScale 1s ease-out forwards;
+    z-index: 10;
+    margin: 30px auto;
+    border: none;
+    transform-style: preserve-3d;
+    overflow: visible;
+}
+
+/* Header & Brand Identity */
+h1 {
+    font-family: var(--font-heading);
+    font-size: 5.5em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    position: relative;
+    animation: slideInTop 1s ease-out forwards;
+    letter-spacing: 0.1em;
+    text-shadow: var(--glow-effect);
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin-bottom: 50px;
+}
+h1::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 8px;
+    background-color: var(--primary-dark);
+    margin: 20px auto 0;
+    border-radius: 4px;
+    animation: expandLine 1.2s ease-out 0.3s forwards;
+    box-shadow: var(--glow-effect);
+}
+.tagline {
+    font-family: var(--font-special-text);
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin-bottom: 70px;
+    animation: fadeIn 1.2s ease-out 0.5s forwards;
+    opacity: 0;
+    text-shadow: var(--subtle-glow);
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    display: block;
+}
+
+/* Form Styling */
+#downloadForm {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin-bottom: 80px;
+}
+
+.form-group {
+    position: relative;
+    animation: fadeIn 1.0s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+
+label {
+    font-weight: 600;
+    color: var(--light-text-color);
+    margin-bottom: 15px;
+    display: block;
+    font-family: var(--font-main);
+    font-size: 1.4em;
+    text-shadow: var(--subtle-glow);
+}
+label i {
+    margin-right: 15px;
+    color: var(--primary-color);
+}
+
+input[type="text"],
+input[type="url"],
+select {
+    width: 100%;
+    padding: 22px;
+    border: none;
+    border-bottom: 2px solid var(--primary-dark);
+    border-radius: var(--border-radius);
+    font-size: 1.3em;
+    transition: all 0.4s ease;
+    background-color: rgba(26, 0, 38, 0.5);
+    color: var(--text-color);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), var(--subtle-glow);
+    outline: none;
+    transform: translateY(-5px);
+    background-color: rgba(26, 0, 38, 0.7);
+}
+select option {
+    background-color: #0d0014;
+    color: var(--text-color);
+}
+
+/* Styling for info labels (Estimated Size/Time) */
+.info-label {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    text-shadow: var(--subtle-glow);
+    margin-top: 15px; /* Space above each info line */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-label i {
+    color: var(--accent-color); /* Icon color */
+    font-size: 1.1em;
+}
+.info-label span {
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+
+/* Buttons */
+button#downloadButton {
+    font-family: var(--font-button);
+    /* Reverted to original purple gradient */
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--background-color);
+    padding: 25px 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.6em;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Revert transition for background */
+    letter-spacing: 0.15em;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    animation: fadeInScale 1s ease-out 1s forwards;
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(160, 32, 240, 0.6), var(--glow-effect);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button#downloadButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(160, 32, 240, 0.8), var(--glow-effect);
+}
+button#downloadButton:active:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(160, 32, 240, 0.4);
+}
+button#downloadButton:disabled {
+    background: #4A148C;
+    color: #999;
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+    /* Remove --download-progress when disabled to ensure default background */
+    --download-progress: 0% !important;
+}
+
+/* Cancel Button Styling */
+button#cancelDownloadButton {
+    font-family: var(--font-button);
+    background: linear-gradient(135deg, #c0392b 0%, #a02c21 100%);
+    color: white;
+    padding: 25px 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.6em;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.15em;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(192, 57, 43, 0.6);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+button#cancelDownloadButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #a02c21 0%, #c0392b 100%);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(192, 57, 43, 0.8);
+}
+button#cancelDownloadButton:active:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4);
+}
+button#cancelDownloadButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* Messages & Download Link */
+#messages {
+    margin-top: 50px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--primary-color);
+    min-height: 40px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    text-shadow: var(--glow-effect);
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+#messages.success {
+    color: var(--success-color);
+    text-shadow: var(--success-glow);
+}
+#messages.error {
+    color: #dc3545; /* Red for errors */
+    text-shadow: 0 0 25px rgba(220, 53, 69, 0.8);
+}
+#downloadLink {
+    margin-top: 35px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+#downloadLink a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+    display: inline-block;
+    font-family: var(--font-special-text);
+    font-size: 1.5em;
+    text-shadow: var(--glow-effect);
+}
+#downloadLink a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    transform: translateY(-5px);
+    text-shadow: 0 0 25px rgba(160, 32, 240, 0.9);
+}
+
+/* Loader Animation (for button spinner) */
+.spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+/* Secondary Progress Bar (for text/bytes/eta display only) */
+#loadingBarContainer {
+    margin-top: 40px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    /* This container will be shown/hidden by JS */
+    display: none;
+}
+#loadingBarWrapper {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(26, 0, 38, 0.5);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--accent-color);
+}
+#loadingBar {
+    height: 100%;
+    width: 0%;
+    /* This is the green bar that tracks progress */
+    background-color: var(--success-color); /* Green color */
+    border-radius: 15px;
+    transition: width 0.3s ease-out; /* Smooth transition for width */
+    box-shadow: var(--success-glow); /* Green glow */
+}
+
+#loadingText {
+    font-size: 1.3em;
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-shadow: var(--subtle-glow);
+    margin-bottom: 5px;
+}
+
+/* Styling for download size information */
+#downloadSizeInfo {
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    text-shadow: var(--subtle-glow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#downloadSizeInfo span {
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+
+/* Thumbnail Display */
+#thumbnail-container {
+    margin-top: 50px;
+    margin-bottom: 60px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.8s;
+    display: none;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+
+#thumbnailPreview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+    border: 4px solid var(--primary-color);
+    display: block;
+    margin: 0 auto 30px auto;
+    transition: all 0.4s ease;
+    transform: translateZ(30px);
+}
+#thumbnailPreview:hover {
+    transform: scale(1.08) translateZ(40px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.98), var(--glow-effect);
+}
+
+#video-title-display {
+    font-family: var(--font-main);
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0;
+    word-break: break-word;
+    text-shadow: var(--glow-effect);
+}
+
+/* Semantic sections styling */
+section {
+    margin-top: 100px;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: left;
+    border: none;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 1.5s;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 80px;
+}
+
+section h2 {
+    font-family: var(--font-secondary-heading);
+    color: var(--primary-color);
+    font-size: 3em;
+    margin-bottom: 40px;
+    text-align: center;
+    text-shadow: var(--glow-effect);
+    padding: 10px 0;
+}
+
+section ul, section ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+section ul li, section ol li {
+    font-family: var(--font-main);
+    font-size: 1.3em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    box-shadow: none;
+    border: none;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+    text-shadow: var(--subtle-glow);
+}
+section ul li:last-child, section ol li:last-child {
+    margin-bottom: 0;
+}
+
+section ul li:hover, section ol li:hover {
+    transform: translateX(20px);
+    color: var(--primary-color);
+    text-shadow: var(--glow-effect);
+}
+
+section ul li i {
+    color: var(--primary-color);
+    margin-top: 5px;
+    font-size: 1.8em;
+    min-width: 30px;
+    text-shadow: var(--glow-effect);
+}
+
+section ol li strong {
+    color: var(--primary-color);
+    font-family: var(--font-main);
+}
+
+
+/* Footer Styling */
+footer {
+    margin-top: 100px;
+    padding-top: 50px;
+    border-top: 1px solid var(--primary-dark);
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 1.8s;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 40px;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: var(--subtle-glow);
+}
+
+footer a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    text-shadow: var(--glow-effect);
+}
+
+
+/* General Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8) translateY(50px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideInTop {
+    from { opacity: 0; transform: translateY(-100px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandLine {
+    from { width: 0; }
+    to { width: 200px; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(70px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* FLOATING ICONS STYLES */
+:root {
+    --icon-color-1: #FF00FF;
+    --icon-color-2: #00FFFF;
+    --icon-color-3: #FFFF00;
+    --icon-color-4: #00FF00;
+    --icon-color-5: #FF0000;
+    --icon-color-6: #0000FF;
+    --icon-color-7: #FFA500;
+    --icon-color-8: #9370DB;
+    --icon-color-9: #FF69B4;
+}
+
+.floating-icons-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+    animation: float-around linear infinite;
+}
+
+.floating-icon i {
+    font-size: 40px;
+    text-shadow: var(--subtle-glow);
+}
+
+/* Adjust colors */
+.floating-icon:nth-child(1) i { color: var(--icon-color-1); }
+.floating-icon:nth-child(2) i { color: var(--icon-color-2); }
+.floating-icon:nth-child(3) i { color: var(--icon-color-3); }
+.floating-icon:nth-child(4) i { color: var(--icon-color-4); }
+.floating-icon:nth-child(5) i { color: var(--icon-color-5); }
+.floating-icon:nth-child(6) i { color: var(--icon-color-6); }
+.floating-icon:nth-child(7) i { color: var(--icon-color-7); }
+.floating-icon:nth-child(8) i { color: var(--icon-color-8); }
+.floating-icon:nth-child(9) i { color: var(--icon-color-9); }
+
+/* More varied initial positions and speeds */
+.floating-icon:nth-child(1) { top: 15%; left: 10%; animation-duration: 35s; animation-delay: 0s; transform: scale(0.7); }
+.floating-icon:nth-child(2) { top: 60%; left: 80%; animation-duration: 28s; animation-delay: -5s; transform: scale(0.9); }
+.floating-icon:nth-child(3) { top: 30%; left: 50%; animation-duration: 42s; animation-delay: -10s; transform: scale(1.1); }
+.floating-icon:nth-child(4) { top: 80%; left: 25%; animation-duration: 31s; animation-delay: -15s; transform: scale(0.85); }
+.floating-icon:nth-child(5) { top: 5%; left: 75%; animation-duration: 25s; animation-delay: -3s; transform: scale(1.0); }
+.floating-icon:nth-child(6) { top: 45%; left: 35%; animation-duration: 38s; animation-delay: -8s; transform: scale(0.75); }
+.floating-icon:nth-child(7) { top: 70%; left: 65%; animation-duration: 33s; animation-delay: -12s; transform: scale(0.95); }
+.floating-icon:nth-child(8) { top: 20%; left: 90%; animation-duration: 40s; animation-delay: -6s; transform: scale(1.05); }
+
+/* Keyframes adjusted to keep icons more within the screen bounds */
+@keyframes float-around {
+    0% { transform: translate(0vw, 10vh) rotate(0deg) scale(1); opacity: 0.4; }
+    25% { transform: translate(20vw, 40vh) rotate(90deg) scale(1.1); opacity: 0.5; }
+    50% { transform: translate(70vw, 20vh) rotate(180deg) scale(0.9); opacity: 0.45; }
+    75% { transform: translate(50vw, 70vh) rotate(270deg) scale(1.05); opacity: 0.55; }
+    100% { transform: translate(0vw, 10vh) rotate(360deg) scale(1); opacity: 0.4; }
+}
+
+/* Responsive adjustments to keep density */
+@media (max-width: 1024px) {
+    .floating-icon i {
+        font-size: 35px;
+    }
+    @keyframes float-around {
+        0% { transform: translate(0vw, 15vh) rotate(0deg) scale(1); }
+        25% { transform: translate(25vw, 45vh) rotate(90deg) scale(1.1); }
+        50% { transform: translate(65vw, 25vh) rotate(180deg) scale(0.9); }
+        75% { transform: translate(45vw, 65vh) rotate(270deg) scale(1.05); }
+        100% { transform: translate(0vw, 15vh) rotate(360deg) scale(1); }
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-icon i {
+        font-size: 30px;
+    }
+    @keyframes float-around {
+        0% { transform: translate(0vw, 20vh) rotate(0deg) scale(1); }
+        25% { transform: translate(30vw, 50vh) rotate(90deg) scale(1.1); }
+        50% { transform: translate(60vw, 30vh) rotate(180deg) scale(0.9); }
+        75% { transform: translate(40vw, 60vh) rotate(270deg) scale(1.05); }
+        100% { transform: translate(0vw, 20vh) rotate(360deg) scale(1); }
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-icon i {
+        font-size: 25px;
+    }
+    @keyframes float-around {
+        0% { transform: translate(0vw, 25vh) rotate(0deg) scale(1); }
+        25% { transform: translate(35vw, 55vh) rotate(90deg) scale(1.1); }
+        50% { transform: translate(55vw, 35vh) rotate(180deg) scale(0.9); }
+        75% { transform: translate(35vw, 55vh) rotate(270deg) scale(1.05); }
+        100% { transform: translate(0vw, 25vh) rotate(360deg) scale(1); }
+    }
+}
+/* Styling for the logo and text container */
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+    padding: 0;
+
+    top: 0px;
+    left: 850px;
+    justify-content: flex-start;
+}
+
+/* Styling for the logo image */
+.alians-logo {
+    height: 260px;
+    width: auto;
+    margin-right: 15px;
+}
+
+/* Styling for the "Alians Developers" text */
+.header-logo-container h2 {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin: 0;
+    text-shadow: var(--glow-effect);
+    white-space: nowrap;
+}

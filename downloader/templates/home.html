@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yTube-Downloader - Download YouTube Videos & Audios in MP4/MP3</title>
+<script>
+    // This script runs synchronously and immediately in the <head>
+    // to try and override browser scroll restoration as early as possible.
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0); // Force scroll to top immediately
+</script>
+<meta name="description" content="Download YouTube videos and audios effortlessly with yTube-Downloader. Convert YouTube to MP4 (1080p, 720p) or MP3 (320kbps) quickly, safely, and for free.">
+<meta name="keywords" content="youtube downloader, youtube mp4, youtube mp3, video downloader, audio downloader, youtube converter, download youtube, high quality video, free download, online converter, yTube-Downloader">
+<meta name="author" content="yTube-Downloader Team">
+<meta property="og:title" content="yTube-Downloader - Free YouTube Video & Audio Downloader">
+<meta property="og:description" content="Effortlessly download YouTube videos and audios in high quality MP4 and MP3 formats. Fast, safe, and easy to use with yTube-Downloader.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.yourwebsite.com/">
+<meta property="og:image" content="https://www.yourwebsite.com/static/images/ytd-logo-banner.png">
+<meta property="og:site_name" content="yTube-Downloader">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@YourTwitterHandle">
+<meta name="twitter:creator" content="@YourTwitterHandle">
+<meta name="twitter:title" content="yTube-Downloader - Download YouTube Videos & Audios">
+<meta name="twitter:description" content="Download YouTube videos and audios effortlessly with yTube-Downloader. Convert YouTube to MP4 or MP3 quickly and safely.">
+<meta name="twitter:image" content="https://www.yourwebsite.com/static/images/ytd-logo-banner.png">
+<link rel="canonical" href="https://www.yourwebsite.com/">
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://ajax.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: https://i.ytimg.com https://ytimg.googleusercontent.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    connect-src 'self';
+    form-action 'self';
+    object-src 'none';
+    base-uri 'self';
+    upgrade-insecure-requests;
+">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="floating-icons-container">
+        <div class="floating-icon"><i class="fas fa-play-circle"></i></div>
+        <div class="floating-icon"><i class="fas fa-music"></i></div>
+        <div class="floating-icon"><i class="fas fa-video"></i></div>
+        <div class="floating-icon"><i class="fas fa-cloud-download-alt"></i></div>
+        <div class="floating-icon"><i class="fab fa-youtube"></i></div>
+        <div class="floating-icon"><i class="fas fa-file-audio"></i></div>
+        <div class="floating-icon"><i class="fas fa-compact-disc"></i></div>
+        <div class="floating-icon"><i class="fas fa-headphones"></i></div>
+    </div>
+    <div class="main-content">
+        <div class="header-logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="Alians Developers Logo" class="alians-logo">
+        </div>
+        <h1>y-Tube Video Downloader</h1>
+        <p class="tagline">Effortless Downloads, Exceptional Quality, and Ultimate Security.</p>
+        <form id="downloadForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="videoUrl"><i class="fas fa-link"></i> Video URL:</label>
+                <input type="url" id="videoUrl" name="url" placeholder="Paste YouTube video or audio link here..." required pattern="https?://.+$" title="Please enter a valid URL (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)">
+            </div>
+            <div id="thumbnail-container">
+                <img id="thumbnailPreview" src="" alt="Thumbnail preview for the YouTube video to be downloaded">
+                <p id="video-title-display"></p>
+            </div>
+            <div class="form-group">
+                <label for="formatType"><i class="fas fa-file-alt"></i> Format:</label>
+                <select id="formatType" name="format_type" aria-label="Select download format">
+                    <option value="mp4">MP4 Video</option>
+                    <option value="mp3">MP3 Audio</option>
+                </select>
+            </div>
+            <div class="form-group" id="quality-select-group">
+                <label for="quality"><i class="fas fa-sliders-h"></i> Quality:</label>
+                <select class="form-control" id="quality" name="quality" aria-label="Select download quality" disabled>
+                    <option value="">Enter URL to load qualities</option>
+                </select>
+            </div>
+            <div id="estimatedInfoSection" class="form-group" style="display: none;">
+                <p class="info-label"><i class="fas fa-ruler-combined"></i> Estimated Size: <span id="estimatedSizeDisplay">N/A</span></p>
+                <p class="info-label" id="etaDisplayContainer" style="display: none;"><i class="fas fa-hourglass-half"></i> Time Remaining: <span id="estimatedTimeDisplay">N/A</span></p>
+            </div>
+            <button type="submit" id="downloadButton" disabled>
+                <i class="fas fa-download"></i> Download
+            </button>
+            <button type="button" id="cancelDownloadButton" style="display: none;">
+                <i class="fas fa-times-circle"></i> Cancel Download
+            </button>
+        </form>
+        <input type="hidden" id="videoId" value="">
+        <div id="loadingBarContainer">
+            <div id="loadingBarWrapper">
+                <div id="loadingBar"></div>
+            </div>
+            <p id="loadingText">Processing your request...</p>
+            <div id="downloadSizeInfo" style="display: none; margin-top: 10px; font-size: 1.1em; color: var(--secondary-color);">
+                <span id="downloadedBytes">0 Bytes</span> / <span id="totalBytes">N/A</span>
+            </div>
+        </div>
+        <div id="messages"></div>
+        <div id="downloadLink"></div>
+        <section id="features" aria-labelledby="features-heading">
+            <h2 id="features-heading">Why Choose yTube-Downloader?</h2>
+            <ul>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> High-Quality Downloads: Get your videos in 4K, 2K, 1080p and audios in 320kbps.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fast & Efficient: Our optimized system ensures quick processing.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Easy to Use: Simply paste the URL and click download.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Secure & Private: Your data is safe with us.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Multiple Formats: Supports both MP4 video and MP3 audio.</li>
+            </ul>
+        </section>
+        <section id="how-to-use" aria-labelledby="how-to-use-heading">
+            <h2 id="how-to-use-heading">How to Download from YouTube with yTube-Downloader</h2>
+            <ul class="custom-how-to-list">
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Copy: Find the YouTube video you want and copy its URL.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Paste: Paste the URL into the input field above.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Select: Choose your desired format (MP4 or MP3) and quality.</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Download: Click the "Download" button and enjoy your content!</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Extension: We made the Download Process more Efficient by using "Extension"!</li>
+            </ul>
+        </section>
+        <footer>
+            <p>© 2025 y-Tube Downloader. All rights reserved. |
+                <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
+                <a href="/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+            </p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

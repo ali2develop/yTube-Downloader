@@ -1,11 +1,13 @@
-# YTube-downloader
+# yTube-downloader
 
 One-line: A Django web app and API to download YouTube videos and audio (built on yt-dlp/pytube).
 
 Badges:
 - Build / CI: ![CI](https://img.shields.io/badge/ci-not%20configured-lightgrey)
-- License: ![License](https://img.shields.io/badge/license-MIT-blue)
-- Python: ![Python](https://www.python.org/downloads/release/python-3120/)
+- License: ![License](https://img.shields.io/badge/license-Copyright%20Claimed%202025-red)
+- Version: ![Version](https://img.shields.io/badge/version-0.1.0-blue)
+- Python 3.9: [![Python 3.9](https://img.shields.io/badge/python-3.9-blue)](https://www.python.org/downloads/release/python-390/)
+- Copilot: ![Copilot](https://img.shields.io/badge/Copilot-%40copilot-blue)
 
 ---
 
@@ -40,12 +42,13 @@ yTube-downloader is a Django-based project that provides a simple web UI and RES
 
 ## Demo
 Add screenshots or a live demo link here.
-<img width="1279" height="853" alt="image" src="https://github.com/user-attachments/assets/085cf3f0-aad4-4fa7-9ed0-10492696b464" />
+
+![screenshot](docs/screenshot.png)
 
 ---
 
 ## Requirements
-- Python 3.10+
+- Python 3.9 (download link at top)
 - Django 4.x (or compatible)
 - yt-dlp (recommended) or pytube
 - ffmpeg (for audio conversion / trimming)
@@ -211,13 +214,15 @@ Please follow the coding style used in the project and include tests for new fun
 ---
 
 ## License
-This project is licensed under the MIT License — see the LICENSE file for details.
+Copyright Claimed 2025 — All rights reserved.
+
+This project is copyrightclaimed 2025. No open-source license is granted here unless explicitly stated elsewhere.
 
 ---
 
 ## Authors
-- ali2develop — 
-- A customizeable application to downloader Youtube video upto 8K !
+- ali2develop — your-email@example.com
+- Copilot (@copilot) — suggested helper badge added to README
 
 ---
 
@@ -225,4 +230,3 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 - yt-dlp (https://github.com/yt-dlp/yt-dlp)
 - pytube (optional)
 - Django docs and community
-

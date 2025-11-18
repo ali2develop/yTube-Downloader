@@ -5,7 +5,7 @@ One-line: A Django web app and API to download YouTube videos and audio (built o
 Badges:
 - Build / CI: ![CI](https://img.shields.io/badge/ci-not%20configured-lightgrey)
 - License: ![License](https://img.shields.io/badge/license-MIT-blue)
-- Python: ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+- Python: [Python]([https://img.shields.io/badge/python-3.10%2B-blue](https://www.python.org/downloads/release/python-3120/))
 
 ---
 
@@ -40,9 +40,7 @@ yTube-downloader is a Django-based project that provides a simple web UI and RES
 
 ## Demo
 Add screenshots or a live demo link here.
-
-![screenshot]<img width="1279" height="853" alt="image" src="https://github.com/user-attachments/assets/085cf3f0-aad4-4fa7-9ed0-10492696b464" />
-
+<img width="1279" height="853" alt="image" src="https://github.com/user-attachments/assets/085cf3f0-aad4-4fa7-9ed0-10492696b464" />
 
 ---
 

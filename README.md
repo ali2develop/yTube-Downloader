@@ -1,4 +1,4 @@
-# yTube-downloader
+# YTube-downloader
 
 One-line: A Django web app and API to download YouTube videos and audio (built on yt-dlp/pytube).
 
@@ -217,8 +217,8 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 ---
 
 ## Authors
-- ali2develop — your-email@example.com
-- (Add contributors here)
+- ali2develop — 
+- A customizeable application to downloader Youtube video upto 8K !
 
 ---
 
@@ -227,11 +227,3 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 - pytube (optional)
 - Django docs and community
 
----
-
-If you want, I can:
-- Customize this README with your repo URL, exact install commands, screenshots, and license.
-- Commit the README to your repository (I will need the repo in owner/name form and permission to push).
-
-What would you like me to do next? Provide repo owner/name if you want me to create the file in your repository.
-```

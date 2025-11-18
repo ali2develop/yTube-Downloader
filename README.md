@@ -224,9 +224,7 @@ This project is copyrightclaimed 2025. No open-source license is granted here un
 ---
 
 ## Authors
-- ali2develop — your-email@example.com
-- Copilot (@copilot) — suggested helper badge added to README
-
+- ali2develop — muhammadali.mail11@gmail.com
 ---
 
 ## Acknowledgements

@@ -7,7 +7,6 @@ Badges:
 - License: ![License](https://img.shields.io/badge/license-Copyright%20Claimed%202025-red)
 - Version: ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 - Python 3.9: [![Python 3.9](https://img.shields.io/badge/python-3.9-blue)](https://www.python.org/downloads/release/python-390/)
-- Copilot: ![Copilot](https://img.shields.io/badge/Copilot-%40copilot-blue)
 
 ---
 
@@ -41,9 +40,15 @@ yTube-downloader is a Django-based project that provides a simple web UI and RES
 - Optional Docker support
 
 ## Demo
-Add screenshots or a live demo link here.
+###IMAGES:
+<img width="1263" height="851" alt="image" src="https://github.com/user-attachments/assets/2f12a9ab-3b51-4371-854c-6ff698557713" />
+<img width="1262" height="849" alt="image" src="https://github.com/user-attachments/assets/293a7ca1-2f95-4e88-b983-03cf9892ba44" />
+<img width="1278" height="842" alt="image" src="https://github.com/user-attachments/assets/418116e1-aa41-44ee-a95e-714a36b5f5cc" />
+<img width="1279" height="761" alt="image" src="https://github.com/user-attachments/assets/0c7df8f0-217f-47e2-b637-838530d64c37" />
+###VIDEO:
+https://github.com/user-attachments/assets/4958c8b3-16d2-4e90-8148-078a958641bc
 
-![screenshot](docs/screenshot.png)
+
 
 ---
 

@@ -5,7 +5,7 @@ One-line: A Django web app and API to download YouTube videos and audio (built o
 Badges:
 - Build / CI: ![CI](https://img.shields.io/badge/ci-not%20configured-lightgrey)
 - License: ![License](https://img.shields.io/badge/license-MIT-blue)
-- Python: [Python]([https://img.shields.io/badge/python-3.10%2B-blue](https://www.python.org/downloads/release/python-3120/))
+- Python: ![Python](https://www.python.org/downloads/release/python-3120/)
 
 ---
 

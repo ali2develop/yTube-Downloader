@@ -41,7 +41,8 @@ yTube-downloader is a Django-based project that provides a simple web UI and RES
 ## Demo
 Add screenshots or a live demo link here.
 
-![screenshot](docs/screenshot.png)
+![screenshot]<img width="1279" height="853" alt="image" src="https://github.com/user-attachments/assets/085cf3f0-aad4-4fa7-9ed0-10492696b464" />
+
 
 ---
 

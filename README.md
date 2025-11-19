@@ -224,7 +224,7 @@ This project is copyrightclaimed 2025. No open-source license is granted here un
 ---
 
 ## Authors
-- ali2develop — muhammadali.mail11@gmail.com
+- ali2develop — muhammadali.mail111@gmail.com
 ---
 
 ## Acknowledgements
